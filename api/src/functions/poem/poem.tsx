@@ -29,7 +29,10 @@ export const handler = async (event: APIGatewayEvent, _context: Context) => {
     return { statusCode: 405 }
   }
   logger.info(`${event.httpMethod} ${event.path}: poem function`)
-  const { topic } = JSON.parse(event.body);
+
+  // Body might be base64 encoded, see https://github.com/redwoodjs/redwood/issues/1410#issuecomment-825156426
+  const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf-8') : event.body;
+  const { topic } = JSON.parse(body);
 
   return {
     statusCode: 200,
