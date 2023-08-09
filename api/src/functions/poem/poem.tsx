@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /** @jsxImportSource ai-jsx */
 import { toStreamResponse } from 'ai-jsx/stream';
 import { ChatCompletion, UserMessage } from 'ai-jsx/core/completion';
